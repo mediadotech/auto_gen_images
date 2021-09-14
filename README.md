@@ -1,0 +1,1 @@
+greet_ticket_thumbnail_generator
