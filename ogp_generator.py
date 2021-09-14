@@ -6,12 +6,6 @@ from pydantic import BaseModel
 from sample_image import convert_ogp
 # import upload
 
-
-class OgpContext(BaseModel):
-    age: int
-    area: str
-    period: str
-
 # docは公開する必要ない（しちゃ🙅）なので使いません
 app = FastAPI(docs_url=None, redoc_url=None)
 
