@@ -3,14 +3,26 @@ import cairosvg
 from jinja2 import Environment, FileSystemLoader
 import tempfile
 import os
+from pydantic import BaseModel
+import base64
+
+class Item(BaseModel):
+    title: str
+    content: str
+    start_date: str
+    start_time: str
+    organizer_name: str
+    is_greeter: bool
+    color: str
+    avatar: str
+    thumbnail: str
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
 @app.post('/create')
-def create(title: str, content: str, start_date: str, start_time: str, organizer_name: str, is_greeter: bool, color: str):
-    image = convert_ogp(title, content, start_date, start_time, organizer_name, is_greeter, color, 'template/ticket.svg')
-    # WIP: upload image file to S3 with above image
-    return {'status': 'ok'}
+async def create(item: Item):
+    image = convert_ogp(item.title, item.content, item.start_date, item.start_time, item.organizer_name, item.is_greeter, item.color, 'template/hj.svg')
+    return base64.b64encode(image)
 
 
 def convert_ogp(title: str, content: str, start_date: str, start_time: str, organizer_name: str, is_greeter: bool, color: str, template_file: str):
@@ -25,7 +37,9 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
         f.flush()
-        image_bytes = cairosvg.svg2png(url=f.name, write_to="ticket.png")
+        cairosvg.svg2png(url=f.name, write_to="ticket.png", scale=0.6)
+        image_bytes = cairosvg.svg2png(url=f.name, scale=0.3)
+    return image_bytes    
 
 if __name__ == '__main__':
     import os
