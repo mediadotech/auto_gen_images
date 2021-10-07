@@ -21,7 +21,7 @@ app = FastAPI(docs_url=None, redoc_url=None)
 
 @app.post('/create')
 async def create(item: Item):
-    image = convert_ogp(item.title, item.content, item.start_date, item.start_time, item.organizer_name, item.is_greeter, item.color, 'template/hj.svg')
+    image = convert_ogp(item.title, item.content, item.start_date, item.start_time, item.organizer_name, item.is_greeter, item.color, 'templates/ticket.svg')
     return base64.b64encode(image)
 
 
@@ -37,7 +37,7 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
         f.flush()
-        cairosvg.svg2png(url=f.name, write_to="ticket.png", scale=0.6)
+        # cairosvg.svg2png(url=f.name, write_to="ticket.png", scale=0.6)
         image_bytes = cairosvg.svg2png(url=f.name, scale=0.3)
     return image_bytes    
 
