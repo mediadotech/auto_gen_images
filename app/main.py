@@ -29,10 +29,15 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     # Setup default environment param
     env = Environment(loader=FileSystemLoader(os.path.dirname(template_file)))
     ogp_template = env.get_template(os.path.basename(template_file))
+    title1, title2, title3 = title[:14], title[14:27], title[27:]
+    if (title3 != "") :
+         title2 = title2 + " ..."
+    content, content2 = content[:18], content[18:]
+    if (content2 != "") :
+         content = content + " ..."
 
-    # Replace template with desired data
-    ogp_context = ogp_template.render(title=title, content=content, start_d=start_date, start_t=start_time, name=organizer_name, condition=is_greeter, color=color)
-
+    ogp_context = ogp_template.render(title=title1, title2 = title2, content=content, start_d=start_date,
+                                      start_t=start_time, name=organizer_name, condition=is_greeter, color=color)
    # Write temporary file and get image bytes later
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
