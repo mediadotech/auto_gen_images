@@ -22,7 +22,6 @@
   <rect id="color_base" width="320" height="410" rx="20" transform="matrix(-1, 0, 0, -1, 1062.358032, 419.555054)" fill="{{ color }}"/>
   <text id="Official髭男dism_LIVE_TOUR_2021ダイ..." data-name="Official髭男dism LIVE TOUR 2021ダイ..." transform="matrix(1, 0, 0, 1, 167.358017, 183.555038)" fill="#2b2b2e" font-size="26" font-family="NotoSansJP" font-weight="700" letter-spacing="0.02em" style="white-space: pre;" y="30">{{ content }}</text>
   <text id="異次元のプレイで魅せる超絶技巧ドラマー特集_東京ドーム..." data-name="異次元のプレイで魅せる超絶技巧ドラマー特集！@東京ドーム..." transform="matrix(1, 0, 0, 1, 166.731018, 39.556042)" fill="#2b2b2e" font-size="36" font-family="NotoSansJP" font-weight="700" style="white-space: pre;"><tspan x="0" y="42">{{ title }}</tspan><tspan x="0" y="96">{{ title2 }}</tspan></text>
-  <text id="主催者" transform="matrix(1, 0, 0, 1, 907.356018, 323.113068)" fill="#2b2b2e" font-size="24" font-family="NotoSansJP" font-weight="700" style="white-space: pre;"><tspan x="-36" y="0">主催者</tspan></text>
   <path id="kiri4" d="M740,1570.19H690a25,25,0,0,1,50,0Z" transform="matrix(1, 0, 0, 1, 27.358023, -1140.634888)" fill="#dcdce6"/>
   <g id="kiritori" transform="matrix(1, 0, 0, 1, 738.358032, 30.555042)" clip-path="url(#clip-path)">
     <g transform="translate(-609 -1253.19)">

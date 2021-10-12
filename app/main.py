@@ -36,8 +36,12 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     if (content2 != "") :
          content = content + " ..."
 
+    name, name2 = organizer_name[:7], organizer_name[7:]
+    if (name2 != "") :
+         name = name + " ..."
+
     ogp_context = ogp_template.render(title=title1, title2 = title2, content=content, start_d=start_date,
-                                      start_t=start_time, name=organizer_name, condition=is_greeter, avatar=avatar, thumbnail=thumbnail, color=color)
+                                      start_t=start_time, name=name, condition=is_greeter, avatar=avatar, thumbnail=thumbnail, color=color)
     # ogp_context = '<svg xmlns="http://www.w3.org/2000/svg" width="965" height="430" viewBox="0 0 965 430"><rect width="965" height="430" rx="20" fill="#dcdce6"/></svg>'
 
    # TemporaryFileとして書き出して後byteでもらう
