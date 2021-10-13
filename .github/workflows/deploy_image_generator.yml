@@ -3,7 +3,7 @@ name: deploy_greet02_image_generator
 on:
   push:
     tags:
-      - release-stg02-image-generator-*
+      - release-stg02-*
 
 env:
   ECS_ENV: image_generator
