@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  auto_gen_image:
+    build:
+      context: .
+    container_name: greet-api_auto_gen_image
+    networks:
+      - greet-api-dev
+    volumes:
+      - .:/code
+    ports:
+      - 8081:3000
+
+networks:
+  greet-api-dev:
+    name: greet-api-dev
+    external: true
