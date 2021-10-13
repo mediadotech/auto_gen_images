@@ -11,7 +11,7 @@
   "loadBalancers": [
     {
       "containerName": "image-generator",
-      "containerPort": 3000,
+      "containerPort": 8080,
       "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-image-gen/c98237cf8c90cc8f"
     }
   ],
