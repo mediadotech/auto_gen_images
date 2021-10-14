@@ -1,0 +1,8 @@
+region: ${AWS_DEFAULT_REGION}
+cluster: grdev-front_api-cluster
+service: grdev-front_api-image_gen
+service_definition: ecs-service-def.json
+task_definition: ecs-task-def.json
+timeout: 12m0s
+plugins: []
+appspec: null
