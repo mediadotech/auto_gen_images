@@ -6,7 +6,7 @@ on:
       - release-stg01-*
 
 env:
-  ECS_ENV: image_generator
+  ECS_ENV: image_generator01
   AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: ${{ secrets.DEV_AWS_DEFAULT_REGION }}
