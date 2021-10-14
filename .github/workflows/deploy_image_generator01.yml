@@ -1,0 +1,29 @@
+name: deploy_greet01_image_generator
+
+on:
+  push:
+    tags:
+      - release-stg01-*
+
+env:
+  ECS_ENV: image_generator
+  AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ${{ secrets.DEV_AWS_DEFAULT_REGION }}
+  DESIRED_COUNT: 1
+  ECR_REPOSITORY_URI: 787337621160.dkr.ecr.ap-northeast-1.amazonaws.com/grdev-image_generator
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: InitDocker
+        run: |
+          bash .github/scripts/init_docker.sh
+      - name: Deploy
+        run: |
+          bash .github/scripts/deploy.sh
