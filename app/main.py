@@ -21,6 +21,8 @@ app = FastAPI(docs_url=None, redoc_url=None)
 
 @app.post('/create')
 async def create(item: Item):
+    print("Request Param")
+    print(item)
     image = convert_ogp(item.title, item.content, item.start_date, item.start_time, item.organizer_name, item.is_greeter, item.color, item.avatar, item.thumbnail, 'templates/ticket.svg')
     return base64.b64encode(image)
 
@@ -43,6 +45,9 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     ogp_context = ogp_template.render(title=title1, title2 = title2, content=content, start_d=start_date,
                                       start_t=start_time, name=name, condition=is_greeter, avatar=avatar, thumbnail=thumbnail, color=color)
     # ogp_context = '<svg xmlns="http://www.w3.org/2000/svg" width="965" height="430" viewBox="0 0 965 430"><rect width="965" height="430" rx="20" fill="#dcdce6"/></svg>'
+
+    print("SVG content")
+    print(ogp_context)
 
    # TemporaryFileとして書き出して後byteでもらう
     with tempfile.NamedTemporaryFile('w') as f:
