@@ -12,14 +12,19 @@
     {
       "containerName": "image-generator",
       "containerPort": 3000,
-      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-image-gen/c98237cf8c90cc8f"
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-new-igen-nlb/01f63ada87f1530e"
+    },
+    {
+      "containerName": "image-generator",
+      "containerPort": 3000,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-new-igen/6df4198a0ef6b77f"
     }
   ],
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "assignPublicIp": "ENABLED",
       "securityGroups": [
-        "sg-082be8179bed7399b"
+        "sg-08717cc27dd0e44e6"
       ],
       "subnets": [
         "subnet-043d469bf49616c60",
