@@ -14,7 +14,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/grdev-front_api-image_gen",
+          "awslogs-group": "/ecs/grdev-front_api-new_igen",
           "awslogs-region": "ap-northeast-1",
           "awslogs-stream-prefix": "image-generator"
         }
@@ -34,7 +34,7 @@
   ],
   "cpu": "1024",
   "executionRoleArn": "arn:aws:iam::787337621160:role/grdev_front_api_ecs_execute_role",
-  "family": "grdev-front_api-image_gen",
+  "family": "grdev-front_api-new_igen",
   "memory": "2048",
   "networkMode": "awsvpc",
   "placementConstraints": [],
