@@ -5,6 +5,7 @@ import tempfile
 import os
 from pydantic import BaseModel
 import base64
+import urllib
 
 class Item(BaseModel):
     title: str
@@ -27,6 +28,17 @@ async def create(item: Item):
     return base64.b64encode(image)
 
 
+def get_image_url(url):
+    default_url = "https://d5s0godkksmnh.cloudfront.net/profile_images/default-avatar.png"
+    try:
+        urllib.request.urlopen(url)
+    except urllib.error.HTTPError as e:
+        print("Error occured: ")
+        print(url)
+        return default_url
+    return url
+
+
 def convert_ogp(title: str, content: str, start_date: str, start_time: str, organizer_name: str, is_greeter: bool, color: str,avatar: str, thumbnail: str, template_file: str):
     # テンプレファイルと引数からテキストを生成
     env = Environment(loader=FileSystemLoader(os.path.dirname(template_file)))
@@ -42,12 +54,15 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     if (name2 != "") :
          name = name + " ..."
 
+    avatar_url = get_image_url(avatar)
+    thumbnail_url = get_image_url(thumbnail)
+
     ogp_context = ogp_template.render(title=title1, title2 = title2, content=content, start_d=start_date,
-                                      start_t=start_time, name=name, condition=is_greeter, avatar=avatar, thumbnail=thumbnail, color=color)
+                                      start_t=start_time, name=name, condition=is_greeter, avatar=avatar_url, thumbnail=thumbnail_url, color=color)
     # ogp_context = '<svg xmlns="http://www.w3.org/2000/svg" width="965" height="430" viewBox="0 0 965 430"><rect width="965" height="430" rx="20" fill="#dcdce6"/></svg>'
 
-    print("SVG content")
-    print(ogp_context)
+    #  print("SVG content")
+    #  print(ogp_context)
 
    # TemporaryFileとして書き出して後byteでもらう
     with tempfile.NamedTemporaryFile('w') as f:
@@ -55,7 +70,7 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
         f.flush()
         # image_bytes = cairosvg.svg2png(url=f.name, write_to="ticket.png", scale=0.5)
         image_bytes = cairosvg.svg2png(url=f.name, scale=0.3)
-    return image_bytes      
+    return image_bytes
 
 if __name__ == '__main__':
     import os
