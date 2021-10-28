@@ -1,6 +1,6 @@
 region: ${AWS_DEFAULT_REGION}
-cluster: grdev02-front_api-cluster
-service: grdev02-front_api-image_gen
+cluster: grdev-front_api-cluster
+service: grdev-front_api-new_igen
 service_definition: ecs-service-def.json
 task_definition: ecs-task-def.json
 timeout: 12m0s

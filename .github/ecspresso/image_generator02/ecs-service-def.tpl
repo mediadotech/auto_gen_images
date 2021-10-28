@@ -1,0 +1,40 @@
+{
+  "createdBy": "arn:aws:iam::787337621160:user/kazunori_tsuno",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 100
+  },
+  "desiredCount": ${DESIRED_COUNT},
+  "enableECSManagedTags": false,
+  "healthCheckGracePeriodSeconds": 0,
+  "launchType": "FARGATE",
+  "loadBalancers": [
+    {
+      "containerName": "image-generator",
+      "containerPort": 3000,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-new-igen-nlb/01f63ada87f1530e"
+    },
+    {
+      "containerName": "image-generator",
+      "containerPort": 3000,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:787337621160:targetgroup/grdev02-front-api-new-igen/6df4198a0ef6b77f"
+    }
+  ],
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "ENABLED",
+      "securityGroups": [
+        "sg-08717cc27dd0e44e6"
+      ],
+      "subnets": [
+        "subnet-043d469bf49616c60",
+        "subnet-0aedebd5407507b49"
+      ]
+    }
+  },
+  "placementConstraints": [],
+  "placementStrategy": [],
+  "platformVersion": "LATEST",
+  "schedulingStrategy": "REPLICA",
+  "serviceRegistries": []
+}
