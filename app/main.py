@@ -44,6 +44,14 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     env = Environment(loader=FileSystemLoader(os.path.dirname(template_file)))
     ogp_template = env.get_template(os.path.basename(template_file))
     title1, title2, title3 = title[:14], title[14:27], title[27:]
+    title1 = title1.replace("&", "&amp;")
+    title1 = title1.replace(">", "&gt;")
+    title1 = title1.replace("<", "&lt;")
+    title2 = title2.replace("&", "&amp;")
+    title2 = title2.replace(">", "&gt;")
+    title2 = title2.replace("<", "&lt;")
+
+
     if (title3 != "") :
          title2 = title2 + " ..."
     content, content2 = content[:18], content[18:]
