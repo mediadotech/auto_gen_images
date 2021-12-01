@@ -50,9 +50,8 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     title2 = title2.replace("&", "&amp;")
     title2 = title2.replace(">", "&gt;")
     title2 = title2.replace("<", "&lt;")
-    avatar = urllib.parse.quote(avatar,":/")
-    thumbnail = urllib.parse.quote(thumbnail,":/")
-
+    avatar = urllib.parse.quote_plus(avatar,":/")
+    thumbnail = urllib.parse.quote_plus(thumbnail,":/")
 
     if (title3 != "") :
          title2 = title2 + " ..."
