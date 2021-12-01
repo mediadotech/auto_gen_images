@@ -50,8 +50,9 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     title2 = title2.replace("&", "&amp;")
     title2 = title2.replace(">", "&gt;")
     title2 = title2.replace("<", "&lt;")
-    avatar = urllib.parse.quote_plus(avatar,":/")
-    thumbnail = urllib.parse.quote_plus(thumbnail,":/")
+    escape_chars = ":/"
+    avatar = urllib.parse.quote_plus(avatar, escape_chars)
+    thumbnail = urllib.parse.quote_plus(thumbnail, escape_chars)
 
     if (title3 != "") :
          title2 = title2 + " ..."
@@ -68,13 +69,10 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
 
     ogp_context = ogp_template.render(title=title1, title2 = title2, content=content, start_d=start_date,
                                       start_t=start_time, name=name, condition=is_greeter, avatar=avatar_url, thumbnail=thumbnail_url, color=color)
-    # ogp_context = '<svg xmlns="http://www.w3.org/2000/svg" width="965" height="430" viewBox="0 0 965 430"><rect width="965" height="430" rx="20" fill="#dcdce6"/></svg>'
 
-    # TemporaryFileとして書き出して後byteでもらう
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
         f.flush()
-        # image_bytes = cairosvg.svg2png(url=f.name, write_to="ticket.png", scale=0.5)
         image_bytes = cairosvg.svg2png(url=f.name, scale=0.3)
     return image_bytes
 
