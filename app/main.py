@@ -50,6 +50,8 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     title2 = title2.replace("&", "&amp;")
     title2 = title2.replace(">", "&gt;")
     title2 = title2.replace("<", "&lt;")
+    avatar = urllib.parse.quote(avatar,":/")
+    thumbnail = urllib.parse.quote(thumbnail,":/")
 
 
     if (title3 != "") :
@@ -69,10 +71,7 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
                                       start_t=start_time, name=name, condition=is_greeter, avatar=avatar_url, thumbnail=thumbnail_url, color=color)
     # ogp_context = '<svg xmlns="http://www.w3.org/2000/svg" width="965" height="430" viewBox="0 0 965 430"><rect width="965" height="430" rx="20" fill="#dcdce6"/></svg>'
 
-    #  print("SVG content")
-    #  print(ogp_context)
-
-   # TemporaryFileとして書き出して後byteでもらう
+    # TemporaryFileとして書き出して後byteでもらう
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
         f.flush()
