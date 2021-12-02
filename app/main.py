@@ -72,7 +72,7 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     with tempfile.NamedTemporaryFile('w') as f:
         f.write(ogp_context)
         f.flush()
-        image_bytes = cairosvg.svg2png(url=f.name, scale=0.3)
+        image_bytes = cairosvg.svg2png(url=f.name)
     return image_bytes
 
 if __name__ == '__main__':
