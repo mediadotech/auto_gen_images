@@ -6,6 +6,7 @@ import os
 from pydantic import BaseModel
 import base64
 import urllib
+import html
 
 class Item(BaseModel):
     title: str
@@ -43,14 +44,12 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     # テンプレファイルと引数からテキストを生成
     env = Environment(loader=FileSystemLoader(os.path.dirname(template_file)))
     ogp_template = env.get_template(os.path.basename(template_file))
-    title1, title2, title3 = title[:14], title[14:27], title[27:]
-    title1 = title1.replace("&", "&amp;")
-    title1 = title1.replace(">", "&gt;")
-    title1 = title1.replace("<", "&lt;")
-    title2 = title2.replace("&", "&amp;")
-    title2 = title2.replace(">", "&gt;")
-    title2 = title2.replace("<", "&lt;")
     escape_chars = ":/"
+    title = html.escape(title)
+    content = html.escape(content)
+    organizer_name = html.escape(organizer_name)
+
+    title1, title2, title3 = title[:14], title[14:27], title[27:]
     avatar = urllib.parse.quote_plus(avatar, escape_chars)
     thumbnail = urllib.parse.quote_plus(thumbnail, escape_chars)
 
