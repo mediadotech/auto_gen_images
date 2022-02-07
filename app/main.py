@@ -45,8 +45,8 @@ def convert_ogp(title: str, content: str, start_date: str, start_time: str, orga
     env = Environment(loader=FileSystemLoader(os.path.dirname(template_file)))
     ogp_template = env.get_template(os.path.basename(template_file))
     escape_chars = ":/"
-    title = html.escape(title)
-    content = html.escape(content)
+    title = html.escape(title, quote=False)
+    content = html.escape(content, quote=False)
     organizer_name = html.escape(organizer_name)
 
     title1, title2, title3 = title[:14], title[14:27], title[27:]
